@@ -1,0 +1,26 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "bms": {
+      "live": {
+        ".read": true,
+        ".write": true,
+        ".validate": "newData.hasChildren(['voltage','current','soc','temp','ts'])",
+        "voltage": {".validate": "newData.isNumber()"},
+        "current": {".validate": "newData.isNumber()"},
+        "soc": {".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 100"},
+        "temp": {".validate": "newData.isNumber()"},
+        "ts": {".validate": "newData.isNumber()"}
+      },
+      "history": {
+        ".read": true,
+        ".indexOn": ["ts"],
+        "$id": {
+          ".write": "!data.exists()",
+          ".validate": "newData.hasChildren(['voltage','current','soc','temp','ts'])"
+        }
+      }
+    }
+  }
+}
