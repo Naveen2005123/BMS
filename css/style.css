@@ -1,0 +1,40 @@
+:root{--bg:#0d1918;--pn:#132624;--ln:#274542;--tx:#ece4d0;--mu:#86a09a;--am:#f0b24a;--ok:#8fcf8f;--wa:#f0b24a;--bd:#e5604d}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font:400 16px/1.45 'Barlow Condensed',sans-serif;min-height:100vh;letter-spacing:.2px}
+body.loading{overflow:hidden}
+#intro{position:fixed;inset:0;z-index:9;background:var(--bg);display:grid;place-content:center;justify-items:center;gap:6px;transition:transform .9s cubic-bezier(.7,0,.2,1)}
+#intro.gone{transform:translateY(-101%)}
+#intro .shell{fill:none;stroke:var(--tx);stroke-width:3}#intro .cell{fill:var(--am);opacity:0;transition:opacity .25s}#intro .cell.on{opacity:1}
+.brand{font:italic 500 28px 'Newsreader',serif;margin-top:14px}.pc{font-size:64px;font-weight:600;line-height:1}.hint{color:var(--mu)}
+header{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 5vw;border-bottom:1px solid var(--ln)}
+h1{font:italic 500 32px 'Newsreader',serif}header p{color:var(--mu)}
+.pill{padding:5px 16px;border:1px solid var(--ln);border-radius:20px;font-size:17px;display:flex;gap:9px;align-items:center}
+.pill::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--mu)}
+.pill.live::before{background:var(--ok);animation:pulse 1.4s infinite}.pill.off{border-color:var(--bd);color:var(--bd)}.pill.off::before{background:var(--bd)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 #8fcf8f88}100%{box-shadow:0 0 0 10px #8fcf8f00}}
+#banner{margin:18px 5vw 0;padding:12px 18px;border-left:4px solid var(--bd);background:#2a1714;font-size:18px}
+main{display:grid;grid-template-columns:240px 1fr 300px;gap:18px;padding:18px 5vw}
+.card,.g,.ch{background:var(--pn);border:1px solid var(--ln);border-radius:6px;padding:18px}
+h2{font-size:18px;font-weight:500;color:var(--mu);margin-bottom:10px}h2.sub{margin-top:22px}
+.soc{text-align:center}#bat{height:220px}#bat .out{fill:none;stroke:var(--tx);stroke-width:3}
+#fill{fill:var(--ok);transform-box:fill-box;transform-origin:bottom;transform:scaleY(0);transition:transform 1s cubic-bezier(.3,.8,.3,1),fill .6s}
+.ticks path{stroke:var(--pn);stroke-width:2}.big{font-size:76px;font-weight:600;line-height:1;margin-top:8px}.big small{font-size:28px;color:var(--mu)}
+.mode{color:var(--mu);font-size:18px}.charging #fill{animation:chg 1.6s infinite}@keyframes chg{50%{opacity:.55}}
+.gauges{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.g{text-align:center;position:relative}.g svg{width:100%;max-width:190px}
+.g circle{fill:none;stroke-width:11;transform:rotate(135deg);transform-origin:70px 70px}.g .tr{stroke:var(--ln);stroke-dasharray:245 327}
+.g .vl{stroke:var(--ok);stroke-dasharray:0 327;transition:stroke-dasharray 1s cubic-bezier(.3,.8,.3,1),stroke .5s}
+.g .num{position:absolute;left:0;right:0;top:92px;font-size:40px;font-weight:600;line-height:1}.g .num small{font-size:17px;color:var(--mu);margin-left:3px}
+.g .lb{margin-top:-14px;color:var(--mu);font-size:18px}.flash{animation:fl .6s}@keyframes fl{from{color:var(--am)}}
+dl>div{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px dotted var(--ln)}dt{color:var(--mu)}dd{font-size:20px;font-weight:500}
+ul{list-style:none}li{padding:6px 0 6px 14px;border-left:3px solid var(--ok);margin-bottom:6px}li.warn{border-color:var(--wa)}li.bad{border-color:var(--bd)}
+.charts{grid-column:1/-1;display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.ch .hd{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px}.ch h2{margin:0;color:var(--tx);font-size:20px}.ch .st{color:var(--mu);font-size:16px}
+.ch canvas{height:230px!important;margin-top:10px}.rng{display:flex;gap:6px}
+.rng button{background:none;border:1px solid var(--ln);color:var(--mu);padding:2px 12px;border-radius:14px;font:inherit;cursor:pointer}.rng button.on{background:var(--am);color:#1a1405;border-color:var(--am)}
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:18px 5vw 30px;color:var(--mu)}
+body.offline .gauges,body.offline .soc{filter:grayscale(.85);opacity:.7}
+button:focus-visible{outline:2px solid var(--am)}
+@media(max-width:1000px){main{grid-template-columns:1fr 1fr}.gauges{grid-column:1/-1}.insight{grid-column:1/-1}}
+@media(max-width:640px){main{grid-template-columns:1fr}.gauges{grid-template-columns:1fr}.charts{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
