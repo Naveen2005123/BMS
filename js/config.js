@@ -10,16 +10,16 @@ export const firebaseConfig = {
 };
 // Tune these to your real pack.
 export const SETTINGS = {
-  offlineAfterMs: 10000,
-  packAh: 100,             // your pack capacity
-  nominalV: 72,            // your pack voltage
-  kWhPerKm: 0.06,          // see note below, set this for your vehicle
-  vMin: 60, vMax: 90,      // voltage gauge range
-  iMax: 100,               // current gauge range (+/-)
-  vLow: 60, vHigh: 88,     // voltage alert limits
-  tWarn: 45, tHot: 60,
-  socLow: 20, socCrit: 10,
-  iWarn: 80,               // heavy-current warning
-  positiveIsCharging: false,
+  offlineAfterMs: 10000,   // no update for this long = device offline (ESP sends every 2 s)
+  packAh: 20,              // pack capacity in amp-hours
+  nominalV: 48,            // nominal pack voltage
+  kWhPerKm: 0.12,          // vehicle consumption for range estimate
+  vMin: 30, vMax: 58,      // gauge range for voltage
+  iMax: 50,                // gauge range for current (+/-)
+  vLow: 40, vHigh: 56,     // voltage alert limits
+  tWarn: 45, tHot: 60,     // temperature alert limits (C)
+  socLow: 20, socCrit: 10, // charge alert limits (%)
+  iWarn: 40,               // current alert limit (A)
+  dischargeIsNegative: true, // your BMS reports discharge as negative amps; the site flips it so load shows as positive
   historyKey: "bms/history", liveKey: "bms/live"
 };
